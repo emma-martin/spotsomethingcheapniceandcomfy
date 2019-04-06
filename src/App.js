@@ -25,7 +25,11 @@ class App extends Component {
       })
     })
     .catch(err => console.log(err));
-    console.log(this.state)
+  }
+
+  getUniqueIdsFromImages = (str) => {
+    const choppedStr = str.split("/");
+    return choppedStr[choppedStr.length -1].slice(0, -4);
   }
 
   render() {
@@ -38,7 +42,7 @@ class App extends Component {
           <ul className="app__list">
           {this.state.rooms.map(item => {
             return (
-              <li className="app__list-item" key={1}>
+              <li className="app__list-item" key={this.getUniqueIdsFromImages(item.photoUrls.homecardHidpi)}>
                 <div className="card-room">
                   <img src={item.photoUrls.homecardHidpi} alt={item.title} className="card-room__image"/>
                   <div className="room__text">
