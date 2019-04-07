@@ -1,0 +1,119 @@
+// card
+.room__container{
+  width: 250px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #d2d2d2;
+  @media only screen and (min-width: 768px) {
+    width: 90%;
+    margin: auto;
+    min-width: 760px;
+    max-width: 1200px;
+    padding: 0 20px;
+  }
+}
+
+.room-card{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 20px auto;
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.image-container {
+  @media only screen and (min-width: 768px) {
+    width: 25%;
+  }
+}
+
+.room-info-container {
+  @media only screen and (min-width: 768px) {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
+
+.room-card__image{
+  width: 100%;
+  transition: box-shadow 0.3s ease-in-out;
+  &:hover {
+    box-shadow: 4px 3px 8px 1px #a2a2a2;
+    }
+  @media only screen and (min-width: 768px) {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.data-container {
+  display: flex;
+  flex-direction: column;
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.room-card__text{
+  width: 80%;
+  height: 90px;
+  padding: 5px;
+  text-transform: capitalize;
+  text-align: left;
+  @media only screen and (min-width: 768px) {
+    height: auto;
+    padding: 0;
+  }
+}
+.room-card__price{
+  font-family: 'Luckiest Guy', cursive;
+  align-self: flex-end;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding: 5px 8px 0px;
+  border-radius: 8px;
+  background: #343133;
+  color: #FCD103;
+  @media only screen and (min-width: 768px) {
+    margin-bottom: 0;
+  }
+}
+
+.btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.room-card__btn{
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 16px;
+  vertical-align: auto;
+  border-bottom: 5px rgba(0, 0, 0, 0.300) solid;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+  color: #FFFFFF;
+  @media only screen and (min-width: 768px) {
+    width: 180px;
+  }
+}
+
+.btn-primary{
+  background: #3d8f31;
+}
+
+.btn-secondary{
+  display: none;
+  background: #f09218;
+  @media only screen and (min-width: 768px) {
+    display: inline;
+    margin-right: 20px;
+  }
+}

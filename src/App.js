@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import './App.scss';
+import React, { Component } from "react";
+import "./App.scss";
 import { getRooms } from "./services/api";
-import List from './components/List';
+import List from "./components/List";
+import { Spinner } from "./components/Spinner";
 
 class App extends Component {
   constructor(props) {
@@ -12,38 +13,31 @@ class App extends Component {
     };
   }
 
-  componentDidMount(){
-    const dataRooms = localStorage.getItem('dataRooms');
-    if(!dataRooms){
-      console.log('nodata');
-      this.fetchRooms();
-    } else {
-      console.log('sidata');
-      this.setState({
-        rooms: JSON.parse(dataRooms),
-        isLoading: false
-      })
-    }
+  componentDidMount() {
+    const dataRooms = localStorage.getItem("dataRooms");
+    !dataRooms ?
+    this.fetchRooms() :
+    this.setState({
+      rooms: JSON.parse(dataRooms),
+      isLoading: false
+    });
   }
-
 
   fetchRooms = () => {
     getRooms()
-    .then(data => {
-      console.log('fetching');
-      this.setState({
-        rooms: data.homecards
+      .then(data => {
+        this.setState({
+          rooms: data.homecards,
+          isLoading: false
+        });
+        this.setLocalStorage(data.homecards);
       })
-      this.setLocalStorage(data.homecards);
-    })
-    .catch(err => console.log(err));
+      .catch(err => console.log(err));
+  };
+
+  setLocalStorage(data) {
+    localStorage.setItem("dataRooms", JSON.stringify(data));
   }
-
-  setLocalStorage(data){
-    localStorage.setItem('dataRooms', JSON.stringify(data));
-  }
-
-
 
   render() {
     const rooms = this.state.rooms;
@@ -51,11 +45,26 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <div className="App-header__title">
-            <h1>spotaroom</h1>
+            <h1>
+              <a href="./">spotaroom</a>
+            </h1>
           </div>
+          <nav className="App-header__nav">
+            <ul className="App-header__nav-list">
+              <li>
+                <a href="./">The company</a>
+              </li>
+              <li>
+                <a href="./">How we work</a>
+              </li>
+              <li>
+                <a href="./">Contact us</a>
+              </li>
+            </ul>
+          </nav>
         </header>
         <main>
-          <List rooms={rooms}/>
+          {this.state.isLoading ? <Spinner /> : <List rooms={rooms} />}
         </main>
       </div>
     );

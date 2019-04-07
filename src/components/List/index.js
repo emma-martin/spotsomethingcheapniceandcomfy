@@ -1,13 +1,15 @@
 import React, { Component } from "react";
+import "./index.scss";
 import Card from "../Card";
+import PropTypes from 'prop-types';
 
 class List extends Component {
-  getUniqueIdsFromImages = (str) => {
+  getUniqueIdsFromImages = str => {
     const choppedStr = str.split("/");
-    return choppedStr[choppedStr.length -1].slice(0, -4);
-  }
+    return choppedStr[choppedStr.length - 1].slice(0, -4);
+  };
   render() {
-    const {rooms} = this.props;
+    const { rooms } = this.props;
     return (
       <ul className="app__list">
         {rooms.map(item => {
@@ -29,4 +31,7 @@ class List extends Component {
   }
 }
 
+List.propTypes = {
+  rooms: PropTypes.array.isRequired
+}
 export default List;

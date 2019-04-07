@@ -3,69 +3,55 @@
 }
 
 .App-header {
-  min-height: 10vh;
-
-}
-
-.App-header__title{
   position: fixed;
   top: 0;
   z-index: 1;
-  min-height: 10vh;
-  min-width: 100vw;
-  background: #3d8f31;
-}
-
-// room list
-.app__list{
-  list-style: none;
-  padding: 0;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-y: scroll;
-}
-.app__list-item{}
-
-// card
-.room__container{
-  width: 250px;
-  height: 280px;
-  margin-bottom: 20px;
-  background: red;
-  display: flex;
-  flex-direction: column;
-}
-
-.room-card{
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  margin: 20px auto;
-}
-
-
-.room-card__image{
+  height: 70px;
   width: 100%;
-  height: 30%;
+  background: #343133;
+  @media only screen and (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
-.room-card__text{
-  width: 80%;
-  height: 90px;
-  padding: 10px;
-  text-transform: capitalize;
-  text-align: left;
+
+.App-header__title{
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: 20px;
+  color: #f09218;
+  a{
+    color: inherit;
+    text-decoration: none;
+  }
+
 }
-.room-card__price{
-  align-self: flex-end;
-  font-weight: bold;
-  margin-bottom: 10px;
+
+// nav
+.App-header__nav {
+  display: none;
+  color: #d2d2d2;
+  @media only screen and (min-width: 768px) {
+    display: block;
+    }
 }
-.room-card__btn{
-  font-family: 'Shadows Into Light Two',
-    sans-serif;
-  border: 1px black solid;
-  padding: 10px;
-  cursor: pointer;
+
+.App-header__nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  padding-right: 10px;
+  li{
+    padding: 0 10px;
+  }
+  li + li:before{
+    content: '-';
+    padding-right:20px;
+  }
+  li a{
+    color: inherit;
+    text-decoration: none;
+  }
 }
