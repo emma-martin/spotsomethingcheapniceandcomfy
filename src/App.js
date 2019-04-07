@@ -12,19 +12,34 @@ class App extends Component {
   }
 
   componentDidMount(){
-    this.fetchRooms();
-    this.setState({isLoading: false});
+    const dataRooms = localStorage.getItem('dataRooms');
+    if(!dataRooms){
+      console.log('nodata');
+      this.fetchRooms();
+    } else {
+      console.log('sidata');
+      this.setState({
+        rooms: JSON.parse(dataRooms),
+        isLoading: false
+      })
+    }
   }
 
 
   fetchRooms = () => {
     getRooms()
     .then(data => {
+      console.log('fetching');
       this.setState({
         rooms: data.homecards
       })
+      this.setLocalStorage(data.homecards);
     })
     .catch(err => console.log(err));
+  }
+
+  setLocalStorage(data){
+    localStorage.setItem('dataRooms', JSON.stringify(data));
   }
 
   getUniqueIdsFromImages = (str) => {
@@ -46,7 +61,7 @@ class App extends Component {
                 <div className="card-room">
                   <img src={item.photoUrls.homecardHidpi} alt={item.title} className="card-room__image"/>
                   <div className="room__text">
-                    {item.title} 
+                    {item.title}
                   </div>
                   <div className="room__price">
                     {`${item.pricePerMonth}${item.currencySymbol}`}
