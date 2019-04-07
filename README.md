@@ -1,68 +1,79 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Spotaroom App
 
-## Available Scripts
+----
 
-In the project directory, you can run:
+##Summary
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). 
+
+It recreates a dummy layout of an accommodation platform.
+
+## Installation
+
+To install the dependencies, including sass & proptypes, run the following command in the directory:
+
+ ### `npm install`
+
+To open the app in the development mode, type:
 
 ### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Which opens [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
+## Structure
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<pre>
+src/
+|-- App.js
+|-- components
+|   |-- List
+|   |-- Card
+|   `-- Spinner
+`-- services
+    `-- Api.js
 
-### `npm run build`
+</pre>
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Choices
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Design
+I followed a provided visual guide, which included fonts, colors, borders and layout structure. The design was planned taken into account a mobile first approach.
 
-### `npm run eject`
+For mimicking the elements' arrangement, I used [Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox). 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Since there was a deadline for delivering the project, I run out of time for polishing the use of SASS (there is no variable usage nor mixins, but there's some nesting at least).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Logic
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+I employed LocalStorage to avoid unnecessary API calls.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Data coming from the API service missed a proper Id to comply with [React unique keys requirement](https://reactjs.org/docs/lists-and-keys.html#keys).
 
-## Learn More
+To solve this issue, I decided to extract part of each images' parameter to used them as unique identifiers. The method can be found at the List component.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+As alternative workarounds, you can explore using a library like [lodash.random](https://www.npmjs.com/package/lodash.random) to generate a random identifier. Also, there is the option to preprocess the data before setting the state during the fetch method:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+const dataWithId = data.homecards.map(item, index) => {
+  return {...item, id: index});
+  this.setState({
+   rooms: dataWithId
+ })
+```
+And then proceeding to use the new property generated:
 
-### Code Splitting
+`key={item.id}`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Regarding deployment to GitHub Pages, an important remark is that, since its serving via a proxy in package.json, you will only see a mesmerizing spinner made by [@lukehass](https://projects.lukehaas.me/css-loaders/).
 
-### Analyzing the Bundle Size
+### Whishlist
+ 
+React Router, some functionalities, a 404 page with a background gif and many more would may come.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+# Thanks
 
-### Making a Progressive Web App
+This project is made with a purpose for learning and developing better coding skills, so don't be shy and send some PRs with your improvements. Sharing is caring.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+![](https://media.giphy.com/media/xULW8v7LtZrgcaGvC0/giphy.gif)
 
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
