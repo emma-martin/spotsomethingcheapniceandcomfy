@@ -12,7 +12,7 @@ class Card extends Component {
           </div>
           <div className="room-info-container">
             <div className="data-container">
-              <div className="room-card__text">{title}</div>
+              <h2 className="room-card__text">{title}</h2>
               <div className="room-card__price">{price}</div>
             </div>
             <div className="btn-container">

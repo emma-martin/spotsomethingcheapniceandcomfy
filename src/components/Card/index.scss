@@ -65,6 +65,8 @@
   width: 80%;
   height: 90px;
   padding: 5px;
+  font-size: inherit;
+  font-weight: inherit;
   text-transform: capitalize;
   text-align: left;
   @media only screen and (min-width: 768px) {
@@ -100,6 +102,16 @@
   cursor: pointer;
   width: 100%;
   color: #FFFFFF;
+  user-select: none;
+  transition: all 0.2s ease;
+  &:focus {outline:none;}
+  &:active {
+    border-bottom: 0px;
+    border-top: 3px rgba(255, 255, 255, 0.3) solid;
+    border-left: 3px rgba(255, 255, 255, 0.3) solid;
+    top: 4px;
+  }
+
   @media only screen and (min-width: 768px) {
     width: 180px;
   }
@@ -107,11 +119,17 @@
 
 .btn-primary{
   background: #3d8f31;
+  &:hover{
+    background: #26581e;
+  }
 }
 
 .btn-secondary{
   display: none;
   background: #f09218;
+  &:hover{
+    background: #c07512;
+  }
   @media only screen and (min-width: 768px) {
     display: inline;
     margin-right: 20px;

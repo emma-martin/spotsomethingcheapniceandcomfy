@@ -64,7 +64,10 @@ class App extends Component {
           </nav>
         </header>
         <main>
-          {this.state.isLoading ? <Spinner /> : <List rooms={rooms} />}
+          {this.state.isLoading ?
+            <Spinner /> :
+            <List rooms={rooms} />
+          }
         </main>
       </div>
     );
