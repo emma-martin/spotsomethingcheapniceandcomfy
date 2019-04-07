@@ -48,6 +48,7 @@ class App extends Component {
   }
 
   render() {
+    const rooms = this.state.rooms;
     return (
       <div className="App">
         <header className="App-header">
@@ -57,7 +58,7 @@ class App extends Component {
         </header>
         <main>
           <ul className="app__list">
-          {this.state.rooms.map(item => {
+          {rooms.map(item => {
             return (
               <li className="app__list-item" key={this.getUniqueIdsFromImages(item.photoUrls.homecardHidpi)}>
                 <div className="room__container">
