@@ -3,16 +3,17 @@
 }
 
 .App-header {
+  min-height: 10vh;
+
+}
+
+.App-header__title{
   position: fixed;
   top: 0;
   z-index: 1;
   min-height: 10vh;
   min-width: 100vw;
   background: #3d8f31;
-}
-
-.App-header__title{
-  min-height: 10vh;
 }
 
 // room list

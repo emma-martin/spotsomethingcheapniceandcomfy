@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
 import { getRooms } from "./services/api";
+import List from './components/List';
 
 class App extends Component {
   constructor(props) {
@@ -42,10 +43,7 @@ class App extends Component {
     localStorage.setItem('dataRooms', JSON.stringify(data));
   }
 
-  getUniqueIdsFromImages = (str) => {
-    const choppedStr = str.split("/");
-    return choppedStr[choppedStr.length -1].slice(0, -4);
-  }
+
 
   render() {
     const rooms = this.state.rooms;
@@ -57,26 +55,7 @@ class App extends Component {
           </div>
         </header>
         <main>
-          <ul className="app__list">
-          {rooms.map(item => {
-            return (
-              <li className="app__list-item" key={this.getUniqueIdsFromImages(item.photoUrls.homecardHidpi)}>
-                <div className="room__container">
-                  <div className="room-card">
-                    <img src={item.photoUrls.homecardHidpi} alt={item.title} className="room-card__image"/>
-                    <div className="room-card__text">
-                      {item.title}
-                    </div>
-                    <div className="room-card__price">
-                      {`${item.pricePerMonth}${item.currencySymbol}`}
-                    </div>
-                    <button className="room-card__btn">Book now!</button>
-                  </div>
-                </div>
-              </li>
-            )
-          })}
-          </ul>
+          <List rooms={rooms}/>
         </main>
       </div>
     );
