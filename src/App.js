@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import { getRooms } from "./services/api";
 
 class App extends Component {
@@ -51,22 +51,26 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>spotaroom</h1>
+          <div className="App-header__title">
+            <h1>spotaroom</h1>
+          </div>
         </header>
         <main>
           <ul className="app__list">
           {this.state.rooms.map(item => {
             return (
               <li className="app__list-item" key={this.getUniqueIdsFromImages(item.photoUrls.homecardHidpi)}>
-                <div className="card-room">
-                  <img src={item.photoUrls.homecardHidpi} alt={item.title} className="card-room__image"/>
-                  <div className="room__text">
-                    {item.title}
+                <div className="room__container">
+                  <div className="room-card">
+                    <img src={item.photoUrls.homecardHidpi} alt={item.title} className="room-card__image"/>
+                    <div className="room-card__text">
+                      {item.title}
+                    </div>
+                    <div className="room-card__price">
+                      {`${item.pricePerMonth}${item.currencySymbol}`}
+                    </div>
+                    <button className="room-card__btn">Book now!</button>
                   </div>
-                  <div className="room__price">
-                    {`${item.pricePerMonth}${item.currencySymbol}`}
-                  </div>
-                  <button className="room__btn">Book now!</button>
                 </div>
               </li>
             )

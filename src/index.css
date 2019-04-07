@@ -1,13 +1,18 @@
-@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy');
 
-body {
+@import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light+Two');
+
+
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Luckiest Guy', cursive,
+}
+body {
+  font-family: 'Shadows Into Light Two', cursive,
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 
