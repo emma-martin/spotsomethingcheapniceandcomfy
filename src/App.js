@@ -9,6 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       rooms: [],
+      query: "",
       isLoading: true
     };
   }
@@ -39,8 +40,57 @@ class App extends Component {
     localStorage.setItem("dataRooms", JSON.stringify(data));
   }
 
+  // filterbyUserQuery: 1st, add empty object query to state. 
+  // Create an input element
+  // <input value={query} type="text" onChange={getUserQuery} />
+  // 2nd, value as the user query. Generate and 
+  // pass function that sets the user query as the state.  
+  // 3rd, filter by userquery: 
+  // returning a filtered array, that its criteria filter is 
+  // if the item in the array (rooms) contains the user query (query)
+  // this is the array that goes into the List map
+
+
+  getUserQuery = (event) => {
+    const userQuery = event.currentTarget.value;
+    this.setState({
+      query: userQuery
+    })
+  }
+
+  filterByUserQuery = () =>{
+    const {rooms, query} = this.state;
+    const filteredRooms = rooms.filter(item =>
+      item.title.toLowerCase().includes(query.toLowerCase()));
+    return filteredRooms;
+  }
+
+
+// orderByPrice: 1st, I create a select option list.
+// Select onChange will receive the method
+// options will have a matching value
+// Method will have an event as a parameter, cause target.value as criteria
+//then pass it through props
+  orderByPrice = (event) => {
+    const {rooms} = this.state;
+    const sortBy = event.currentTarget.value;
+    this.setState({
+      rooms: rooms.sort((a, b) => {
+        return sortBy === "asc" ?
+          a.pricePerMonth - b.pricePerMonth :
+          sortBy === "desc" ?
+          b.pricePerMonth - a.pricePerMonth :
+          rooms;
+      })
+    })
+  }
+
+
+
+
   render() {
-    const rooms = this.state.rooms;
+    const {query} = this.state;
+    const roomsFilteredByUserQuery = this.filterByUserQuery();
     return (
       <div className="App">
         <header className="App-header">
@@ -66,7 +116,12 @@ class App extends Component {
         <main>
           {this.state.isLoading ?
             <Spinner /> :
-            <List rooms={rooms} />
+            <List 
+              rooms={roomsFilteredByUserQuery} 
+              query = {query}
+              getUserQuery={this.getUserQuery} 
+              orderByPrice={this.orderByPrice}
+            />
           }
         </main>
       </div>

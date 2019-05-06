@@ -9,9 +9,30 @@ class List extends Component {
     return choppedStr[choppedStr.length - 1].slice(0, -4);
   };
   render() {
-    const { rooms } = this.props;
+    const { rooms, query, getUserQuery, orderByPrice } = this.props;
     return (
       <ul className="app__list">
+
+      <input 
+        value={query} 
+        type="text" 
+        onChange={getUserQuery} 
+      />
+
+      <select onChange={orderByPrice}>
+        <option value="">
+          sort by price
+        </option>
+        <option value="asc">
+          ascending
+        </option>
+        <option value="desc">
+          descending
+        </option>
+      </select>
+
+
+       
         {rooms.map(item => {
           return (
             <li
